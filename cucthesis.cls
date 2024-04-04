@@ -1,9 +1,8 @@
 % Author: Yang Liu
 % Email: blueloveTH@foxmail.com
 % License: LaTeX Project Public License v1.3c
-% Date: April 05, 2021
 
-\ProvidesClass{cucthesis}[2021/04/05 v0.2 Thesis Class of Communication University of China]
+\ProvidesClass{cucthesis}[2021/02/23 v0.1 Thesis Class of Communication University of China]
 \NeedsTeXFormat{LaTeX2e}
 
 \RequirePackage{kvoptions}
@@ -69,15 +68,12 @@
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}
 \renewcommand{\theequation}{\arabic{section}-\arabic{equation}}
 
-\renewcommand{\appendix}{
+\newcommand{\appendixformat}{
   \renewcommand\figurename{附图}
   \renewcommand\tablename{附表}
   \renewcommand{\thefigure}{\arabic{figure}}
   \renewcommand{\thetable}{\arabic{table}}
 }
-
-\setlength{\belowcaptionskip}{0.5\ccwd}
-%\setlength{\abovecaptionskip}{0.5\ccwd}
 
 %%%%%%%%%%%%%%%%%%%%%% code style %%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,21 +115,11 @@
 
 \newcommand{\keywords}[1]{\newline\newline\newline\noindent\heiti{关键词：}\heiti #1}
 
-\newcommand{\maketitleEN}{
-  \zihao{-2}\textbf{\heiti\thesisTitleEN}
-  \vspace{2\ccwd}
-
-  \zihao{4}\yourNameEN
-  \vspace{1.5\ccwd}
-}
-
 % 英文摘要命令
 \newenvironment{abstractEN}{
   \clearpage\phantomsection
   \begin{center}
     \vspace*{-10pt}
-    \maketitleEN    % Extra command
-
     \zihao{3}\textbf{\heiti{ABSTRACT}}
     
     \vspace{8pt}
@@ -199,7 +185,7 @@
 
   \clearpage
 
-  \chead{\zihao{5}\ziju{0.08}\fangsong{中国传媒大学本科毕业论文}}
+  \chead{\zihao{5}\ziju{0.08}\fangsong{华南师范大学本科毕业论文}}
   \renewcommand{\headrulewidth}{1.0pt}
   \pagenumbering{arabic}
   \setcounter{page}{1}
@@ -230,21 +216,16 @@
   \begin{titlepage}
     \vspace*{-10pt}
   
-    \noindent
-    \zihao{-2}\kaishu{
-      保密类别\dunderline{0.6pt}{\makebox[4cm][c]{\hphantom{空白}}}\hfill
-      编号\dunderline{0.6pt}{\makebox[5cm][c]{\studentID}}
-    }
-  
     \vspace*{2\ccwd}
   
+    \centering
+    \includegraphics{imgs/south_china_normal_university_icon.jpg}
     \centering
     \zihao{-0}\textbf{\songti{毕\hphantom{空}业\hphantom{空}论\hphantom{空}文}}
     \vspace{0.6cm}
   
     \zihao{-2}\textbf{\heiti\thesisTitle}
-  
-    \vspace{5.5cm}
+    \vspace{2.5cm}
   
     \flushleft
   
@@ -256,6 +237,8 @@
         \infobox{班\hphantom{空白}级}{\yourClass}
   
         \infobox{姓\hphantom{空白}名}{\yourName}
+        
+        \infobox{学\hphantom{空白}号}{\studentID}
   
         \infobox{指导教师}{\yourMentor}
     \end{spacing}
@@ -263,7 +246,7 @@
     \vspace{3cm}
 
     \centering
-    \zihao{-2}\ziju{0.5}\textbf{\songti{中国传媒大学}}
+    \zihao{-2}\ziju{0.5}\textbf{\songti{华南师范大学}}
   
     \zihao{-2}\ziju{0.5}\textbf{\songti{\zhtoday}}
   \end{titlepage}
@@ -273,3 +256,24 @@
   \setcounter{page}{1}
 }
 
+%%%%%%%%%%%%%%%%%%%%%% JavaScript语法高亮支持 %%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, const},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this, async},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
