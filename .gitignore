@@ -1,2 +1,9 @@
 *.gz
 *.zip
+*.aux
+*.log
+*.bbl
+*.blg
+*.toc
+*.out
+/result
