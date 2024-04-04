@@ -1,4 +1,2 @@
-# cucthesis
-Thesis Template of Communication University of China
-
-### https://blueloveth.github.io/cucthesis/
+# scnuthesis
+ A simple latex template base on (cucthesis) and (overlays::SCNU-my-article convert) with nix flake support 
