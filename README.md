@@ -2,6 +2,12 @@
     A simple latex template base on (cucthesis) and (overlays::SCNU-my-article convert) with nix flake support 
     一个简单的，基于下面两个库实现的 Nix 封装
 
+```
+# 最简单的编译方式
+make install-nix
+make 
+```
+
 - https://www.overleaf.com/latex/templates/scnu-my-article/jkbbvhnddtsw
 - https://github.com/latexstudio/cucthesis
 
@@ -9,4 +15,7 @@
 。
 
     NOTE：如果需要添加 `\usepackage` OR `\RequirePackage` 请务必保证其在一行内。
+
+    NOTE: 如果你没有安装 nix，建议你先安装一下，`make install-nix` 会自动执行 The Determinate Nix Installer 在大部分的电脑系统中安装 Nix
+    同理，你也可以通过 `make uninstall-nix` 卸载安装
 
