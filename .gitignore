@@ -6,6 +6,9 @@
 *.blg
 *.toc
 *.out
+*.fdb_latexmk
+*.fls
+*.xdv
 /result
 
 ./fonts/*
