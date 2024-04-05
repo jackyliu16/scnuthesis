@@ -24,7 +24,7 @@ clean:
 ifeq ($(IN_NIX_SHELL),impure)
 	latexmk -c
 else
-	rm -rf *.aux *.bbl *.bbl *.log *.out *.toc *.pdf
+	rm -rf *.aux *.bbl *.bbl *.log *.out *.toc *.pdf *.gz *.zip *.aux *.log *.bbl *.blg *.toc *.out *.fdb_latexmk *.fls *.xdv
 endif
 
 #--------------------------------------------------
