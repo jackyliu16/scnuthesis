@@ -1,15 +1,24 @@
 # Maybe you will not only use one packages.default
-PACK_NAME ?= 
+PACK_NAME ?= main
 SUBSTITUTERS := --option substituters https://mirror.sjtu.edu.cn/nix-channels/store
+DEFAULT_PDF_READER := xdg-open
 
 default: clean build
-	xdg-open result
+	${DEFAULT_PDF_READER} ${PACK_NAME}.pdf
 
 build: # Build up your documents
-	nix build ".?submodules=1#${PACK_NAME}" ${SUBSTITUTERS} 
+ifeq ($(IN_NIX_SHELL),impure)
+	latexmk -xelatex ${PACK_NAME}.tex
+else
+	nix develop ".?submodules=1#"  ${SUBSTITUTERS} --command latexmk -xelatex ${PACK_NAME}.tex
+endif
 
 dev: # Open a develop shell with tools
-	nix develop ".?submodules=1#${PACK_NAME}" ${SUBSTITUTERS} 
+ifeq ($(IN_NIX_SHELL),impure)
+	@echo "You're already inside."
+else
+	nix develop ".?submodules=1#" ${SUBSTITUTERS} 
+endif
 
 clean:
 ifeq ($(IN_NIX_SHELL),impure)
@@ -17,7 +26,6 @@ ifeq ($(IN_NIX_SHELL),impure)
 else
 	rm -rf *.aux *.bbl *.bbl *.log *.out *.toc *.pdf
 endif
-
 
 #--------------------------------------------------
 # Nix Instruction

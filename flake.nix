@@ -28,22 +28,15 @@
         name = "mydocument";
         src = self;
         inherit texPackages;
-        inputFile = "main.tex";
+        inputFile = "";
 
         fonts = [
           pkgs.times-newer-roman # not working
           "${./fonts}"
         ];
 
-        buildPhase = ''
-          xelatex main.tex 
-          bibtex main.aux
-          xelatex main.tex 
-          xelatex main.tex 
-        '';
-        installPhase = ''
-          mv main.pdf $out 
-        '';
+        buildPhase = "";
+        installPhase = "";
       };
     });
 }
