@@ -1,6 +1,7 @@
 # scnuthesis
 
-A simple latex template base on (cucthesis) and (overlays::SCNU-my-article convert) with nix flake support 
+A simple latex template base on [cucthesis](https://github.com/latexstudio/cucthesis
+) and [overleaf::SCNU-my-article](https://www.overleaf.com/latex/templates/scnu-my-article/jkbbvhnddtsw) with nix flake support 
 一个简单的，基于下面两个样式实现的 Nix 封装，目标在于实现可复现的文档编译功能。
 
 支持环境如下：
