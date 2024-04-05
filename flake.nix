@@ -38,7 +38,7 @@
         buildPhase = ''
           xelatex main.tex 
           bibtex main.aux
-          xelatex main.tex # not sure if correct
+          xelatex main.tex 
           xelatex main.tex 
         '';
         installPhase = ''
