@@ -28,16 +28,17 @@
         ]
       },
       "locked": {
-        "dirtyRev": "02115919e07e4b30670392781643eb4da9e011cc-dirty",
-        "dirtyShortRev": "0211591-dirty",
-        "lastModified": 1712211412,
-        "narHash": "sha256-RRiovPzTk4JirJ05pDX7xQfJ4miy2n5JCy8ag6l7uVY=",
-        "type": "git",
-        "url": "file:///home/jacky/Documents/latex-utils/"
+        "lastModified": 1712289977,
+        "narHash": "sha256-CRJqyO+a4XJ7i1z6RBjIBWulOTyOAaXlQqil5VZApuU=",
+        "owner": "jackyliu16",
+        "repo": "latex-utils",
+        "rev": "4858613a2617c9e9c84c8004c9bedecd63d1b594",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/jacky/Documents/latex-utils/"
+        "owner": "jackyliu16",
+        "repo": "latex-utils",
+        "type": "github"
       }
     },
     "nixpkgs": {

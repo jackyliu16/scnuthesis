@@ -31,7 +31,6 @@
         inputFile = "main.tex";
 
         fonts = [
-          pkgs.times-newer-roman # not working
           "${./fonts}"
         ];
 
