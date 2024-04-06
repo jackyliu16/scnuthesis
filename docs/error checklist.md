@@ -3,6 +3,8 @@ TLDR: 当前文件主要包含如下内容
 2. 编译出错标准检查流程
 3. nativeBuildInputs value is null while a list was expected
 
+# 可能出现的错误与解决方案
+
 1. `/fonts: No such file or directory`
    在 flake.nix 中引入了当前路径下的 fonts 文件夹，这个文件夹中保存了一些相对比较常见的字体
    可能是因为两种原因导致无法编译的情况，
@@ -11,7 +13,9 @@ TLDR: 当前文件主要包含如下内容
       1. 如果你不在意（我只是比较怕）分享字体可能带来的影响，你可以直接将这个 git submodule 从这个注册路径删除，然后手动创建一个同名的文件夹，将对应的字体放进去
       2. 如何判断字体是否是 latex 要的？ 通过 `nix develop` 进入到 `nix devShells` 然后通过 `fc-list | grep ${FONT_NAME}` 
          搜索出一个类似于`/nix/store/...-fonts/Times_New_Roman.ttf: Times New Roman:style=Regular,Normal,obyčejné,Standard,Κανονικά,Normaali,Normál,Normale,Standaard,Normalny,Обычный,Normálne,Navadno,thường,Arrunta`
-         这种的东西（后面的东西不一定一致，不过只需要关心`:`后面的第一段 Times New Roman 代表了这个字体的名字）
+         这种的东西（后面的东西不一定一致，不过只需要关心`:`后面的第一段 Times New Roman 代表了这个字体的名字，一般在模板中 `\setmainfont{Times New Roman}
+`需求）
+         
 
 
    2. 问题可能由 nix 版本导致，请将 nix 版本设置为 2.18.1 (保证能跑), 2.19 会报错。2.20 [以上似乎是可以直接跑](https://github.com/NixOS/nix/pull/7862#issuecomment-1908577578)。
@@ -50,41 +54,35 @@ Transcript written on main.log.
 ```
 
 3. nativeBuildInputs value is null while a list was expected
-   ```
-error:
-       … while calling the 'derivationStrict' builtin
-
-         at /builtin/derivation.nix:9:12: (source not available)
-
-       … while evaluating derivation 'mydocument.pdf'
-         whose name attribute is located at /nix/store/n2g5cqwv8qf5p6vjxny6pg3blbdij12k-source/pkgs/stdenv/generic/make-derivation.nix:331:7
-
-       … while evaluating attribute 'nativeBuildInputs' of derivation 'mydocument.pdf'
-
-         at /nix/store/n2g5cqwv8qf5p6vjxny6pg3blbdij12k-source/pkgs/stdenv/generic/make-derivation.nix:375:7:
-
-          374|       depsBuildBuild              = elemAt (elemAt dependencies 0) 0;
-          375|       nativeBuildInputs           = elemAt (elemAt dependencies 0) 1;
-             |       ^
-          376|       depsBuildTarget             = elemAt (elemAt dependencies 0) 2;
-
-       error: value is null while a list was expected
-make: *** [Makefile:9：build] 错误 1
 ```
+error:
+    … while calling the 'derivationStrict' builtin
 
-模板文件出现了 `\usepackage, \RequirePackage` 跨行的情况 如
+      at /builtin/derivation.nix:9:12: (source not available)
 
-```nix
+    … while evaluating derivation 'mydocument.pdf'
+      whose name attribute is located at /nix/store/n2g5cqwv8qf5p6vjxny6pg3blbdij12k-source/pkgs/stdenv/generic/make-derivation.nix:331:7
 
+    … while evaluating attribute 'nativeBuildInputs' of derivation 'mydocument.pdf'
+
+      at /nix/store/n2g5cqwv8qf5p6vjxny6pg3blbdij12k-source/pkgs/stdenv/generic/make-derivation.nix:375:7:
+
+       374|       depsBuildBuild              = elemAt (elemAt dependencies 0) 0;
+       375|       nativeBuildInputs           = elemAt (elemAt dependencies 0) 1;
+          |       ^
+       376|       depsBuildTarget             = elemAt (elemAt dependencies 0) 2;
+
+    error: value is null while a list was expected
+```
+大概率由当前目录下 tex, cls 文件中将 usepackage OR RequirePackage 放置在同一行中引起，如
+
+```
 \RequirePackage[a4paper
-  , left=3cm
-  , right=2.3cm
-  , top=2.3cm
-  , bottom=2.6cm
-  , headheight=10cm
-  , headsep=0.3cm]{geometry}
+, left=3cm
+, right=2.3cm
+, top=2.3cm
+, bottom=2.6cm
+, headheight=10cm
+, headsep=0.3cm]{geometry}
 \setlength{\headsep}{0.6cm}
 ```
-
-
-
