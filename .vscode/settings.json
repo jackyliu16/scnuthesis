@@ -1,6 +1,8 @@
 {
     "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.watch.pdf.delay": 100,
+    "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.tools": [
         {
             "name": "xelatex",
@@ -15,12 +17,58 @@
         },
         {
             "name": "latexmk",
-            "command": "latexmk",
+            "command": "xelatexmk",
             "args": [
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "xelatexmk-watch-show",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pv",
+                "-pvc",
+                "-pdf",
+                "-xelatex",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "xelatexmk-watch",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pvc",
+                "-pdf",
+                "-xelatex",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "xelatexmk-show",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pv",
+                "-pdf",
+                "-xelatex",
                 "-outdir=%OUTDIR%",
                 "%DOC%"
             ],
@@ -148,64 +196,28 @@
             ]
         },
         {
-            "name": "latexmk",
-            "tools": [
-                "latexmk"
-            ]
-        },
-        {
-            "name": "latexmk (latexmkrc)",
-            "tools": [
-                "latexmk_rconly"
-            ]
-        },
-        {
-            "name": "latexmk (lualatex)",
-            "tools": [
-                "lualatexmk"
-            ]
-        },
-        {
             "name": "latexmk (xelatex)",
             "tools": [
                 "xelatexmk"
             ]
         },
         {
-            "name": "pdflatex -> bibtex -> pdflatex * 2",
+            "name": "xelatexmk show (xelatex)",
             "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
+                "xelatexmk-watch-show"
             ]
         },
         {
-            "name": "Compile Rnw files",
+            "name": "xelatexmk watch (xelatex)",
             "tools": [
-                "rnw2tex",
-                "latexmk"
+                "xelatexmk-watch"
             ]
         },
         {
-            "name": "Compile Jnw files",
+            "name": "xelatexmk show(only) (xelatex)",
             "tools": [
-                "jnw2tex",
-                "latexmk"
+                "xelatexmk-show"
             ]
         },
-        {
-            "name": "Compile Pnw files",
-            "tools": [
-                "pnw2tex",
-                "latexmk"
-            ]
-        },
-        {
-            "name": "tectonic",
-            "tools": [
-                "tectonic"
-            ]
-        }
     ]
 }
