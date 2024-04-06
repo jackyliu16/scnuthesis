@@ -34,7 +34,8 @@
         buildInputs = [];
 
         fonts = [
-          "${./fonts}"
+          # "${./fonts}"
+          pkgs.times-newer-roman
         ];
 
         buildPhase =    "";
