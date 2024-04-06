@@ -1,3 +1,8 @@
+TLDR: 当前文件主要包含如下内容
+1. `/fonts: No such file or directory`
+2. 编译出错标准检查流程
+3. nativeBuildInputs value is null while a list was expected
+
 1. `/fonts: No such file or directory`
    在 flake.nix 中引入了当前路径下的 fonts 文件夹，这个文件夹中保存了一些相对比较常见的字体
    可能是因为两种原因导致无法编译的情况，
@@ -44,20 +49,8 @@ No pages of output.
 Transcript written on main.log.
 ```
 
-3. 模板文件出现了 `\usepackage, \RequirePackage` 跨行的情况 如
-```nix
-
-\RequirePackage[a4paper
-  , left=3cm
-  , right=2.3cm
-  , top=2.3cm
-  , bottom=2.6cm
-  , headheight=10cm
-  , headsep=0.3cm]{geometry}
-\setlength{\headsep}{0.6cm}
-```
-
-```
+3. nativeBuildInputs value is null while a list was expected
+   ```
 error:
        … while calling the 'derivationStrict' builtin
 
@@ -78,4 +71,20 @@ error:
        error: value is null while a list was expected
 make: *** [Makefile:9：build] 错误 1
 ```
+
+模板文件出现了 `\usepackage, \RequirePackage` 跨行的情况 如
+
+```nix
+
+\RequirePackage[a4paper
+  , left=3cm
+  , right=2.3cm
+  , top=2.3cm
+  , bottom=2.6cm
+  , headheight=10cm
+  , headsep=0.3cm]{geometry}
+\setlength{\headsep}{0.6cm}
+```
+
+
 
