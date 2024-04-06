@@ -16,9 +16,9 @@ A simple latex template base on [cucthesis](https://github.com/latexstudio/cucth
 | Docker Containers            |                    | ✓           | Stable            |
 | Linux (i686)                 | ✓ (via [systemd])  | ✓           | Unstable          |
 
-```
-
 # 最简单的操作方式
+
+```
 make install-nix 安装 nix 包管理器
 make 编译包
 
@@ -26,6 +26,10 @@ make 编译包
 make dev
 code .
 安装 latex-workshop 插件
+在 latex-workshop 中选择 Build LaTex Project :: Recipe: latexmk (xelatex)
+同时选择 View LaTex PDF :: View in VSCode tab
+编辑 main.tex 文件，右侧的 tab 会自动更新
+
 。。。
 make uninstall-nix 删除nix 包管理器以及其衍生物
 ```
