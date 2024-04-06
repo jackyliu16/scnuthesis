@@ -23,26 +23,23 @@
         # NOTE: add some latex package you want 
         inherit (pkgs.texlive) xecjk xetex bibtex;
       };
+
     in {
       packages.default = latex-utils.lib.${system}.mkLatexPdfDocument {
         name = "mydocument";
         src = self;
         inherit texPackages;
-        inputFile = "main.tex";
+        inputFile = "";
+        
+        buildInputs = [];
 
         fonts = [
           "${./fonts}"
         ];
 
-        buildPhase = ''
-          xelatex main.tex 
-          bibtex main.aux
-          xelatex main.tex 
-          xelatex main.tex 
-        '';
-        installPhase = ''
-          mv main.pdf $out 
-        '';
+        buildPhase =    "";
+        installPhase =  "";
+        shellHook =     "";
       };
     });
 }
