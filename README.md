@@ -32,3 +32,5 @@ make
 - NOTE: 如果你没有安装 nix，建议你先安装一下，`make install-nix` 会自动执行 The Determinate Nix Installer 在大部分的电脑系统中安装 Nix
 同理，你也可以通过 `make uninstall-nix` 卸载安装
 
+- NOTE: 目前采用的以 ".?submodules=1" URL 修饰符实现 git submodule 加载的形式似乎只在 nix --verion == 2.18.1 能保证通过，在 2.19 测试的时候无法正确将对应 submodule 文件复制到对应位置。不过这一问题[有望](https://github.com/NixOS/nix/pull/7862#issuecomment-1908577578)在 nix version 2.20 之后版本得到完整解决。
+
