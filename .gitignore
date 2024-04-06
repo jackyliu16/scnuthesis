@@ -9,6 +9,7 @@
 *.fdb_latexmk
 *.fls
 *.xdv
+*.pdf
 /result
 
 ./fonts/*
